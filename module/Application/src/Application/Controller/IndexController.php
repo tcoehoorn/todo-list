@@ -12,6 +12,7 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
+use Task\Model\Task;
 
 class IndexController extends AbstractActionController
 {
@@ -20,7 +21,7 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         return new ViewModel(array(
-            'tasks' =>  $this->getTaskTable()->fetchAll(),
+            'tasks' => $this->getTaskTable()->fetchAll(),
         ));
     }
 
@@ -28,7 +29,18 @@ class IndexController extends AbstractActionController
     {
         $request = $this->getRequest();
 	    
-	    $data = $request->getPost();
+	    $description = $request->getPost('description');
+	    $date = $request->getPost('date');
+
+        if (!empty($description) && !empty($date)) {
+            $taskTable = $this->getTaskTable();
+            $task = new Task();
+
+            $task->description = $description;
+            $task->date = $date;
+
+            $taskTable->saveTask($task);
+        }
 
         return new JsonModel(array(
             'test' => 'hello',

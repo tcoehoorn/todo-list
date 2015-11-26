@@ -27,7 +27,7 @@ formApp.controller('FormController', ['$scope', '$http', function($scope, $http)
     $scope.processForm = function() {
         $http({
           method: 'POST',
-          url: '/application/index/create',
+          url: '/application/index/create-task',
           data: $.param($scope.formData),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
