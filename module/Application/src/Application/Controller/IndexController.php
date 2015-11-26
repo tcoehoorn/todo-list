@@ -11,6 +11,7 @@ namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
 
 class IndexController extends AbstractActionController
 {
@@ -19,8 +20,16 @@ class IndexController extends AbstractActionController
         return new ViewModel();
     }
 
-    public function createTask()
+    public function createAction()
     {
-        return new ViewModel();
+        $request = $this->getRequest();
+	    
+	    $data = $request->getPost('test1');
+
+        $test = $_POST['test1'];
+
+        return new JsonModel(array(
+            'test' => 'hello',
+        ));
     }
 }
