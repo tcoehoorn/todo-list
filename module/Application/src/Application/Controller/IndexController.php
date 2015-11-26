@@ -20,8 +20,16 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
+        $taskResults = $this->getTaskTable()->fetchAll();
+        
+        $tasks = array();
+
+        foreach ($taskResults as $task) {
+            $tasks[] = $task->toArray();
+        }
+
         return new ViewModel(array(
-            'tasks' => $this->getTaskTable()->fetchAll(),
+            'tasks' => $tasks,
         ));
     }
 
@@ -44,6 +52,7 @@ class IndexController extends AbstractActionController
 
         return new JsonModel(array(
             'description' => $description,
+            'date'        => $date,
         ));
     }
 

@@ -2,12 +2,21 @@
     $this->headScript()->prependFile($this->basePath('js/index.js'))
 ?>
 <h1>Tasks</h1>
-<ul id="task-list">
-    <?php foreach ($this->tasks as $task): ?>
-        <li><?php echo $task->description; ?></li>
-    <?php endforeach; ?>
-</ul>
-<div class="col-xs-12 col-sm-6" ng-app="formApp" ng-controller="FormController">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Due Date</th>
+        <tr>
+    </thead>
+    <tbody ng-init="tasks = <?php echo htmlspecialchars(json_encode($this->tasks)); ?>">
+            <tr ng-repeat="task in tasks">
+                 <td>{{task[1]}}</td>
+                 <td>{{task[2]}}</td>
+            </tr>
+    </tbody>
+</table>
+<div class="col-xs-12 col-sm-6" ng-controller="FormController">
     <h2>Add New Task</h2>
     <form id="create-task" ng-submit="processForm()">
         <div class="form-group">

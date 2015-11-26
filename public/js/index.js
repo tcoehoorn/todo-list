@@ -11,7 +11,10 @@ formApp.controller('FormController', ['$scope', '$http', function($scope, $http)
           data: $.param($scope.formData),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
-            $('#task-list').append('<li>' + response.data.description + '</li>');
+            $('#task-list tbody').append(
+                '<tr><td>' + response.data.description + '</td>'
+                + '<td>' + response.data.date + '</td></tr>'
+            );
             $scope.formData.description = '';
             $scope.formData.date = '';
         }, function errorCallback(response) {
