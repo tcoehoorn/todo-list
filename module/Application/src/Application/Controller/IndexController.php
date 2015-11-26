@@ -43,7 +43,7 @@ class IndexController extends AbstractActionController
         }
 
         return new JsonModel(array(
-            'test' => 'hello',
+            'description' => $description,
         ));
     }
 

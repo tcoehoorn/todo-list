@@ -1,24 +1,4 @@
-//$(function() {
 
-    //$('form#create-task').submit(function() {
-    //    alert('hello world');
-    //});
-
-//// define angular module/app
-//    var formApp = angular.module('formApp', []);
-//
-//    // create angular controller and pass in $scope and $http
-//    function formController($scope, $http) {
-//        $scope.formData = {};
-//
-//        $scope.processForm = function() {
-//            alert('What');
-//        }
-//
-//    }
-////});
-//
-// define angular module/app
 var formApp = angular.module('formApp', []);
 
 formApp.controller('FormController', ['$scope', '$http', function($scope, $http) {
@@ -31,8 +11,9 @@ formApp.controller('FormController', ['$scope', '$http', function($scope, $http)
           data: $.param($scope.formData),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
-          // this callback will be called asynchronously
-          // when the response is available
+            $('#task-list').append('<li>' + response.data.description + '</li>');
+            $scope.formData.description = '';
+            $scope.formData.date = '';
         }, function errorCallback(response) {
           // called asynchronously if an error occurs
           // or server returns response with an error status.

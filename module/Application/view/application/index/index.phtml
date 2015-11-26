@@ -2,7 +2,7 @@
     $this->headScript()->prependFile($this->basePath('js/index.js'))
 ?>
 <h1>Tasks</h1>
-<ul>
+<ul id="task-list">
     <?php foreach ($this->tasks as $task): ?>
         <li><?php echo $task->description; ?></li>
     <?php endforeach; ?>
