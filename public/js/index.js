@@ -17,3 +17,16 @@
 //
 //    }
 ////});
+//
+// define angular module/app
+var formApp = angular.module('formApp', []);
+
+formApp.controller('FormController', ['$scope', function($scope) {
+    $scope.formData = {};
+
+    $scope.processForm = function() {
+        alert('What');
+    }
+
+}]);
+
