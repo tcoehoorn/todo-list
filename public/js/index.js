@@ -11,9 +11,8 @@ formApp.controller('FormController', ['$scope', '$http', function($scope, $http)
           data: $.param($scope.formData),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
-            $('#task-list tbody').append(
-                '<tr><td>' + response.data.description + '</td>'
-                + '<td>' + response.data.date + '</td></tr>'
+            $scope.tasks = $scope.tasks.concat(
+                [['', response.data.description, response.data.date]]
             );
             $scope.formData.description = '';
             $scope.formData.date = '';
