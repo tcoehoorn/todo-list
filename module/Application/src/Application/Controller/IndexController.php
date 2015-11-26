@@ -47,13 +47,25 @@ class IndexController extends AbstractActionController
             $task->description = $description;
             $task->date = $date;
 
+            $id = $request->getPost('id');
+
+            if (is_numeric($id)) {
+                $task->id = $id;
+            }
+
             $taskTable->saveTask($task);
         }
 
         return new JsonModel(array(
+            'id'          => $id,
             'description' => $description,
             'date'        => $date,
         ));
+    }
+
+    public function deleteTaskAction()
+    {
+
     }
 
     public function getTaskTable()

@@ -2,22 +2,8 @@
     $this->headScript()->prependFile($this->basePath('js/index.js'))
 ?>
 <h1>Tasks</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Description</th>
-            <th>Due Date</th>
-        <tr>
-    </thead>
-    <tbody ng-init="tasks = <?php echo htmlspecialchars(json_encode($this->tasks)); ?>">
-            <tr ng-repeat="task in tasks">
-                 <td>{{task[1]}}</td>
-                 <td>{{task[2]}}</td>
-            </tr>
-    </tbody>
-</table>
-<div class="col-xs-12 col-sm-6">
-    <h2>Add New Task</h2>
+<div class="col-xs-12 col-sm-3">
+    <h2 id="save-task-hdr">Add New Task</h2>
     <form id="create-task" ng-submit="processForm()">
         <div class="form-group">
             <label for="todoName">Description</label>
@@ -27,6 +13,25 @@
             <label for="todoDate">Due Date</label>
             <input type="text" class="form-control" id="todoDate" placeholder="2016-11-31" ng-model="formData.date">
         </div>
+        <input type="hidden" id="todoId" ng-model="formData.id">
         <button type="submit" class="btn btn-default">Create Task</button>
     </form>
+</div>
+<div class="col-xs-12 col-sm-offset-1 col-sm-8">
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th></th>
+        <tr>
+    </thead>
+    <tbody ng-init="tasks = <?php echo htmlspecialchars(json_encode($this->tasks)); ?>">
+            <tr ng-repeat="task in tasks">
+                 <td>{{task[1]}}</td>
+                 <td>{{task[2]}}</td>
+                 <td><a ng-click="loadEditForm($index)">Edit</a></td>
+            </tr>
+    </tbody>
+</table>
 </div>
