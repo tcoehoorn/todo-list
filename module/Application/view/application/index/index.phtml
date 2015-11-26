@@ -3,19 +3,20 @@
 ?>
 <h1>Tasks</h1>
 <ul>
-    <li>Get Groceries</li>
-    <li>Pick up Tickets</li>
+    <?php foreach ($this->tasks as $task): ?>
+        <li><?php echo $task->description; ?></li>
+    <?php endforeach; ?>
 </ul>
 <div class="col-xs-12 col-sm-6" ng-app="formApp" ng-controller="FormController">
     <h2>Add New Task</h2>
     <form id="create-task" ng-submit="processForm()">
         <div class="form-group">
             <label for="todoName">Description</label>
-            <input type="text" class="form-control" id="todoName" placeholder="Description" ng-model="formData.description">
+            <input type="text" class="form-control" id="todoName" placeholder="Remember the milk" ng-model="formData.description">
         </div>
         <div class="form-group">
             <label for="todoDate">Due Date</label>
-            <input type="text" class="form-control" id="todoDate" placeholder="Due Date" ng-model="formData.date">
+            <input type="text" class="form-control" id="todoDate" placeholder="2016-11-31" ng-model="formData.date">
         </div>
         <button type="submit" class="btn btn-default">Create Task</button>
     </form>

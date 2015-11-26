@@ -15,21 +15,32 @@ use Zend\View\Model\JsonModel;
 
 class IndexController extends AbstractActionController
 {
+    protected $taskTable;
+
     public function indexAction()
     {
-        return new ViewModel();
+        return new ViewModel(array(
+            'tasks' =>  $this->getTaskTable()->fetchAll(),
+        ));
     }
 
-    public function createAction()
+    public function createTaskAction()
     {
         $request = $this->getRequest();
 	    
-	    $data = $request->getPost('test1');
-
-        $test = $_POST['test1'];
+	    $data = $request->getPost();
 
         return new JsonModel(array(
             'test' => 'hello',
         ));
+    }
+
+    public function getTaskTable()
+    {
+        if (!$this->taskTable) {
+            $sm = $this->getServiceLocator();
+            $this->taskTable = $sm->get('Task\Model\TaskTable');
+        }
+        return $this->taskTable;
     }
 }

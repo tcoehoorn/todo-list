@@ -28,7 +28,7 @@ formApp.controller('FormController', ['$scope', '$http', function($scope, $http)
         $http({
           method: 'POST',
           url: '/application/index/create',
-          data: $.param({test1: 'world'}),
+          data: $.param($scope.formData),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
           // this callback will be called asynchronously
