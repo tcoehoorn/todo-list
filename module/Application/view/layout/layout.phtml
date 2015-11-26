@@ -1,9 +1,9 @@
 <?php echo $this->doctype(); ?>
 
-<html lang="en">
+<html lang="en" ng-app="formApp">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('Todo List') ?>
+        <?php echo $this->headTitle('Task Tracker') ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -19,17 +19,35 @@
         <!-- Scripts -->
         <?php echo $this->headScript()
             ->prependFile($this->basePath('js/bootstrap.min.js'))
-            ->prependFile($this->basePath('js/jquery.min.js'))
-            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
+            //->prependFile('https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js')
+            ->prependFile($this->basePath('js/bower_components/angular/angular.js'))
+            //->prependFile($this->basePath('js/jquery.min.js'))
+            ->prependFile($this->basePath('js/bower_components/jquery/dist/jquery.js'))
+            //->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+            //->prependFile($this->basePath('js/html5shiv.min.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
         ; ?>
 
+<script>
+
+    // define angular module/app
+    var formApp = angular.module('formApp', []);
+
+    formApp.controller('FormController', ['$scope', function($scope) {
+        $scope.formData = {};
+
+        $scope.processForm = function() {
+            alert('What');
+        }
+
+    }]);
+
+</script>
     </head>
-    <body>
+    <body ng-controller="FormController">
       <nav class="navbar navbar-inverse navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
-              <a href="#" class="navbar-brand">Trev's Tremendous Task Tracker</a>
+              <a href="#" class="navbar-brand">Task Tracker</a>
             </div>
           </div>
       </nav>
