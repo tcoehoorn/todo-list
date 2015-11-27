@@ -27,7 +27,7 @@ class IndexController extends AbstractActionController
         $tasks = array();
 
         foreach ($taskResults as $task) {
-            $tasks[] = $task->toArray();
+            $tasks[$task->getId()] = $task->toArray();
         }
 
         return new ViewModel(array(

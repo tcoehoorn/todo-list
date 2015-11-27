@@ -17,20 +17,10 @@ taskApp.controller('TaskController', ['$scope', '$http', function($scope, $http)
           data: $.param($scope.formData),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
-            if ($scope.formData.id == undefined) {
-                // add new task to list
-                $scope.tasks = $scope.tasks.concat(
-                    [[response.data.id, response.data.description, response.data.date]]
-                );
-            } else {
-                // update existing task data
-                angular.forEach($scope.tasks, function(value, key) {
-                    if (value[0] == response.data.id) {
-                        value[1] = response.data.description;
-                        value[2] = response.data.date;
-                    }
-                });
-            }
+            // update task data
+            $scope.tasks[response.data.id] = [
+                response.data.id, response.data.description, response.data.date
+            ];
 
             // reset form data
             $scope.formData.description = '';
