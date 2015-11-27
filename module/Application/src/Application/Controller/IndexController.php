@@ -1,12 +1,4 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/ZendSkeletonApplication for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
@@ -14,10 +6,20 @@ use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Task\Model\Task;
 
+/**
+ * Task Tracker controller
+ *
+ */
 class IndexController extends AbstractActionController
 {
+    /** @var Task\Model\TaskTable task table model */
     protected $taskTable;
 
+    /**
+     * Display task list
+     *
+     * @return void
+     */
     public function indexAction()
     {
         $taskResults = $this->getTaskTable()->fetchAll();
@@ -33,6 +35,11 @@ class IndexController extends AbstractActionController
         ));
     }
 
+    /**
+     * Save task
+     *
+     * @return void
+     */
     public function saveTaskAction()
     {
         $request = $this->getRequest();
@@ -63,6 +70,11 @@ class IndexController extends AbstractActionController
         ));
     }
 
+    /**
+     * Get task table model
+     *
+     * @return Task\Model\TaskTable
+     */
     public function getTaskTable()
     {
         if (!$this->taskTable) {
