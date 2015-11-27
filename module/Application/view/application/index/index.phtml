@@ -4,7 +4,7 @@
 <h1>Tasks</h1>
 <div class="col-xs-12 col-sm-3">
     <h2 id="save-task-hdr">Add New Task</h2>
-    <form id="create-task" ng-submit="processForm()">
+    <form id="create-task" ng-submit="saveTask()">
         <div class="form-group">
             <label for="todoName">Description</label>
             <input type="text" class="form-control" id="todoName" placeholder="Remember the milk" ng-model="formData.description">
