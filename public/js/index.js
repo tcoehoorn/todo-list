@@ -1,7 +1,7 @@
 
-var formApp = angular.module('formApp', []);
+var taskApp = angular.module('taskApp', []);
 
-formApp.controller('FormController', ['$scope', '$http', function($scope, $http) {
+taskApp.controller('TaskController', ['$scope', '$http', function($scope, $http) {
     $scope.formData = {};
 
     $scope.processForm = function() {
