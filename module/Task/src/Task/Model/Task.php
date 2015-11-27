@@ -38,7 +38,11 @@ class Task
      */
     public function toArray()
     {
-        return array($this->id, $this->description, $this->date);
+        return array(
+            'id' => $this->id,
+            'description' => $this->description,
+            'date' => $this->date
+        );
     }
 
     /**

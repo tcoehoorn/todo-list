@@ -28,8 +28,8 @@
     </thead>
     <tbody ng-init="tasks = <?php echo htmlspecialchars(json_encode($this->tasks)); ?>">
             <tr ng-repeat="(id, task) in tasks">
-                 <td>{{task[1]}}</td>
-                 <td>{{task[2]}}</td>
+                 <td>{{task.description}}</td>
+                 <td>{{task.date}}</td>
                  <td><a ng-click="loadEditForm(id)">Edit</a></td>
             </tr>
     </tbody>

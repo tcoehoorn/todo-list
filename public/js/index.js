@@ -18,9 +18,11 @@ taskApp.controller('TaskController', ['$scope', '$http', function($scope, $http)
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {
             // update task data
-            $scope.tasks[response.data.id] = [
-                response.data.id, response.data.description, response.data.date
-            ];
+            $scope.tasks[response.data.id] = {
+                id: response.data.id,
+                description: response.data.description,
+                date: response.data.date
+            };
 
             // reset form data
             $scope.formData.description = '';
@@ -36,9 +38,9 @@ taskApp.controller('TaskController', ['$scope', '$http', function($scope, $http)
      * Load edit task form data
      */
     $scope.loadEditForm = function(index) {
-        $scope.formData.id = $scope.tasks[index][0];
-        $scope.formData.description = $scope.tasks[index][1];
-        $scope.formData.date = $scope.tasks[index][2];
+        $scope.formData.id = $scope.tasks[index].id;
+        $scope.formData.description = $scope.tasks[index].description;
+        $scope.formData.date = $scope.tasks[index].date;
         $('#save-task-hdr').text('Edit Task');
         $('#create-task button').text('Update');
     }
