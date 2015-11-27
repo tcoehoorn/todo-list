@@ -59,7 +59,7 @@ class TaskTable
      *
      * @param Task $task task
      *
-     * @return void
+     * @return int task id
      */
     public function saveTask(Task $task)
     {
@@ -71,6 +71,7 @@ class TaskTable
         $id = (int) $task->getId();
         if ($id == 0) {
             $this->tableGateway->insert($data);
+            $id = $this->tableGateway->getLastInsertValue();
         } else {
             if ($this->getTask($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
@@ -78,6 +79,8 @@ class TaskTable
                 throw new \Exception('Task id does not exist');
             }
         }
+
+        return $id;
     }
 
     /**

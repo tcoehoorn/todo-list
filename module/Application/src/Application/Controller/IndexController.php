@@ -60,7 +60,7 @@ class IndexController extends AbstractActionController
                 $task->setId($id);
             }
 
-            $taskTable->saveTask($task);
+            $id = $taskTable->saveTask($task);
         }
 
         return new JsonModel(array(
