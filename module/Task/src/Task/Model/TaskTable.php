@@ -64,11 +64,11 @@ class TaskTable
     public function saveTask(Task $task)
     {
         $data = array(
-            'description' => $task->description,
-            'date'  => $task->date,
+            'description' => $task->getDescription(),
+            'date'  => $task->getDate(),
         );
 
-        $id = (int) $task->id;
+        $id = (int) $task->getId();
         if ($id == 0) {
             $this->tableGateway->insert($data);
         } else {

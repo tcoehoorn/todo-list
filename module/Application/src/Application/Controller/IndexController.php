@@ -51,13 +51,13 @@ class IndexController extends AbstractActionController
             $taskTable = $this->getTaskTable();
             $task = new Task();
 
-            $task->description = $description;
-            $task->date = $date;
+            $task->setDescription($description);
+            $task->setDate($date);
 
             $id = $request->getPost('id');
 
             if (is_numeric($id)) {
-                $task->id = $id;
+                $task->setId($id);
             }
 
             $taskTable->saveTask($task);
