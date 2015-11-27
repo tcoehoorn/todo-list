@@ -13,7 +13,7 @@ taskApp.controller('TaskController', ['$scope', '$http', function($scope, $http)
     $scope.saveTask = function() {
         $http({
           method: 'POST',
-          url: '/application/index/create-task',
+          url: '/application/index/save-task',
           data: $.param($scope.formData),
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function successCallback(response) {

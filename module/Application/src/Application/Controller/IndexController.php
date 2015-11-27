@@ -33,7 +33,7 @@ class IndexController extends AbstractActionController
         ));
     }
 
-    public function createTaskAction()
+    public function saveTaskAction()
     {
         $request = $this->getRequest();
 	    
@@ -61,11 +61,6 @@ class IndexController extends AbstractActionController
             'description' => $description,
             'date'        => $date,
         ));
-    }
-
-    public function deleteTaskAction()
-    {
-
     }
 
     public function getTaskTable()
