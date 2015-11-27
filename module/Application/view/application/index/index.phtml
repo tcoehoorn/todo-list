@@ -7,13 +7,13 @@
     <form id="create-task" ng-submit="saveTask()">
         <div class="form-group">
             <label for="todoName">Description</label>
-            <input type="text" class="form-control" id="todoName" placeholder="Remember the milk" ng-model="formData.description" required>
+            <input type="text" class="form-control" id="todo-name" placeholder="Remember the milk" ng-model="formData.description" required>
         </div>
         <div class="form-group">
             <label for="todoDate">Due Date</label>
-            <input type="text" class="form-control" id="todoDate" placeholder="2016-11-31" ng-model="formData.date" required>
+            <input type="text" class="form-control" id="todo-date" placeholder="2016-11-31" ng-model="formData.date" required>
         </div>
-        <input type="hidden" id="todoId" ng-model="formData.id">
+        <input type="hidden" id="todo-id" ng-model="formData.id">
         <button type="submit" class="btn btn-default">Create Task</button>
     </form>
 </div>
