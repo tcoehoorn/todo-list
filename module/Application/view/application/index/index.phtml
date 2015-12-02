@@ -21,17 +21,22 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Select</th>
             <th>Description</th>
             <th>Due Date</th>
             <th></th>
         <tr>
     </thead>
-    <tbody ng-init="tasks = <?php echo htmlspecialchars(json_encode($this->tasks)); ?>">
+    <form id="modify-tasks" ng-submit="deleteTasks()">
+        <button type="submit" id="delete-tasks" class="btn btn-default">Delete</button>
+        <tbody ng-init="tasks = <?php echo htmlspecialchars(json_encode($this->tasks)); ?>">
             <tr ng-repeat="(id, task) in tasks">
+                 <td><input type="checkbox" value="{id}" ng-model="modifyForm.tasks[id]"></td>
                  <td>{{task.description}}</td>
                  <td>{{task.date}}</td>
                  <td><a ng-click="loadEditForm(id)">Edit</a></td>
             </tr>
-    </tbody>
+        </tbody>
+    </form>
 </table>
 </div>

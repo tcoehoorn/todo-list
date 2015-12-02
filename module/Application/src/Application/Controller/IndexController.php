@@ -36,6 +36,30 @@ class IndexController extends AbstractActionController
     }
 
     /**
+     * Delete tasks
+     *
+     * @return void
+     */
+    public function deleteTasksAction()
+    {
+        $request = $this->getRequest();
+
+        $tasks = $request->getPost('tasks');
+
+        $taskTable = $this->getTaskTable();
+
+        if (is_array($tasks)) {
+            foreach ($tasks as $id => $value) {
+                $taskTable->deleteTask($id);
+            }
+        }
+
+        return new JsonModel(array(
+            'success' => true,
+        ));
+    }
+
+    /**
      * Save task
      *
      * @return void
